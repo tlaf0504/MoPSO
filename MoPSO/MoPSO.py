@@ -5,8 +5,9 @@ from numpy.random import default_rng
 
 from MoPSO.Individual import Individual
 from MoPSO.Problem import Problem
-from MoPSO.update_strategies.NDS_crowd_gauss import NDS_crowd_gauss
 from MoPSO.update_strategies.update_strategy_1 import update_strategy_1
+from MoPSO.update_strategies.update_strategy_2 import update_strategy_2
+from MoPSO.update_strategies.update_strategy_3 import update_strategy_3
 
 class MoPSO:
     def __init__(self, problem: Problem):
@@ -76,7 +77,10 @@ class MoPSO:
                 self.individuals[k].x = new_positions[k]
 
         elif update_strategy == "strategy_2":
-            NDS_crowd_gauss.update_population(ranks, fronts, self.objective_values, self.individuals)
+            update_strategy_2.update_population(ranks, fronts, self.objective_values, self.individuals)
+
+        elif update_strategy == "strategy_3":
+            update_strategy_3.update_population(ranks, fronts, self.objective_values, self.individuals)
 
 
         if boundary_strategy == "strategy_1":
